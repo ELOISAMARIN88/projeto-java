@@ -44,7 +44,7 @@ public abstract class Pagamento {
 		String formadePagamento = "";
 		
 		System.out.println("\n\n-------------------------------------------------");
-		System.out.println("Nota de Pagamento: ");
+		System.out.println("Dados do: ");
 		System.out.println("-----------------------------------------------------");
 		System.out.println("Nome do Cliente: " + this.nomedoCliente );
 		System.out.println("CPF do Cliente: " + this.CPF);

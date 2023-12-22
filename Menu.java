@@ -1,23 +1,37 @@
 package menu;
 
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import Pagamento.Pagamento;
-import Pagamento.CartãodeCredito;
-import Pagamento.CartaodeDebito;
+
+import menu.controller.Controller;
+
 
 public class Menu {
 
 	public static void main(String[] args) {
 		
+		Controller notas = new Controller();
+		
 		Scanner leia = new Scanner(System.in);
-		int opcao, quant = 0, opcaoPg;
+		int opcao, quant = 0, opcaoPg, CPF, RG, cvv;
+		String nomedoCliente ;
+		long numerodoCartaoCredito ,numerodoCartaoDebito;
+		
 		double total = 0;
+		
+		try {
+			opcao = leia.nextInt();
+		}catch(InputMismatchException e){
+			System.out.println("\nEntre com valores inteiros!");
+			leia.nextLine();
+			opcao= 0;
+		}
 		
 		while (true) {
 			
 			
-		System.out.println("---------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------------------------------------");
 		System.out.println("                                                      ");
 		System.out.println("                 Cadapio  da Onda do Mar:                         ");
 		System.out.println("                                                      ");
@@ -31,7 +45,7 @@ public class Menu {
 		System.out.println("\t\t 8 - Refrigerante lata------------------- R$ 8,00");
 		System.out.println("\t\t 9 - Suco-------------------------------- R$ 15,00");
 		System.out.println("\t\t 0 - Sair                                         ");
-		System.out.println("\n---------------------------------------------------------");
+		System.out.println("\n-----------------------------------------------------------------------------------------------------");
 		System.out.println("\nEntre com a opção desejada:                             ");
 		
 		opcao = leia.nextInt();
@@ -70,6 +84,8 @@ public class Menu {
 				System.out.println("\nDigite a quantidaade que você deseja: ");
 				quant = leia.nextInt();
 				total += quant * 50.0;
+				
+				
 				
 				break;
 				
@@ -160,31 +176,102 @@ public class Menu {
 
 	        switch (opcaoPg) {
 	            case 1:
-	                System.out.println("Você escolheu pagar em dinheiro. Por favor, tenha o valor exato.");
+	                System.out.println("Você escolheu pagar em dinheiro. ");
+	                notas.listarItens(quant);
+	                
+	                System.out.println("\n\n-------------------------------------------------");
+	        		System.out.println("Dados do: ");
+	        		System.out.println("-----------------------------------------------------");
+	        		System.out.println("Nome do Cliente: "  );
+	        		leia.skip("\\R?");
+					nomedoCliente = leia.nextLine();
+	        		System.out.println("CPF do Cliente: " );
+	        		leia.skip("\\R?");
+					CPF = leia.nextInt();
+	        		System.out.println("RG do Cliente: " );
+	        		RG = leia.nextInt();
+	        	
+	        		
+	                
+	                System.out.println("Total na Conta: " + total);
+	                System.out.println("\nPagamento foi efetuadi com Suscesso!!");
 	                break;
 
 	            case 2:
 	                System.out.println("Você escolheu pagar com cartão de crédito. Insira o cartão na máquina.");
+	                 
+	                System.out.println("\nTotal na Conta: " + total);
+	                System.out.println("\n\n-------------------------------------------------");
+	        		System.out.println("Dados do: ");
+	        		System.out.println("-----------------------------------------------------");
+	        		System.out.println("Nome do Cliente: "  );
+	        		leia.skip("\\R?");
+					nomedoCliente = leia.nextLine();
+	        		System.out.println("CPF do Cliente: " );
+	        		leia.skip("\\R?");
+					CPF = leia.nextInt();
+	        		System.out.println("RG do Cliente: " );
+	        		RG = leia.nextInt();
+	        		
+	        		
+	        		
+	        		System.out.println("\n\n-------------------------------------------------");
+	        		System.out.println("Dados do Cartão de Crédito : ");
+	        		System.out.println("-----------------------------------------------------");
+	        		System.out.println("Número do Cartão de Crédito: "  );
+	        		leia.skip("\\R?");
+					numerodoCartaoCredito = leia.nextLong();
+	        		System.out.println("Data Expiração do Certão de Crédito: " );
+	        		leia.skip("\\R?");
+					long dataexpiracaoCartaoCredito = leia.nextLong();
+	        		System.out.println("CVV do Cartão de Crédito: "  );
+	        		leia.skip("\\R?");
+					cvv = leia.nextInt();
+	        		 System.out.println("\nPagamento foi efetuadi com Suscesso!!");
+	                
 	                break;
 
 	            case 3:
 	                System.out.println("Você escolheu pagar com cartão de débito. Insira o cartão na máquina.");
 	                break;
-
-	            case 4:
+	                
+			case 4:
 	                System.out.println("Você escolheu pagar com Pix. Utilize a chave Pix fornecida.");
+	               
+	                System.out.println("\nTotal na Conta: " + total);
+	                System.out.println("\n\n-------------------------------------------------");
+	        		System.out.println("Dados do: ");
+	        		System.out.println("-----------------------------------------------------");
+	        		System.out.println("Nome do Cliente: "  );
+	        		leia.skip("\\R?");
+					nomedoCliente = leia.nextLine();
+	        		System.out.println("CPF do Cliente: " );
+	        		leia.skip("\\R?");
+					CPF = leia.nextInt();
+	        		System.out.println("RG do Cliente: " );
+	        		RG = leia.nextInt();
+	        		
+	        		
+	        		
+	                
+	                System.out.println("Total na Conta: " + total);
+	                System.out.println("\nPagamento foi efetuadi com Suscesso!!");
+	                
 	                break;
 
 	            default:
 	                System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
 	        }
 
-	        leia.close();
-	    }
+	        
+	    
+		
+
 	}
-		
+	}
 
+	public void visualizar() {
 		
-	
-
+		
+	}
 }
